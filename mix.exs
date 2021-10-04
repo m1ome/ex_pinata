@@ -7,6 +7,9 @@ defmodule Pinata.MixProject do
       version: "1.0.0",
       elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
+      source_url: "https://github.com/m1ome/ex_pinata",
+      description: description(),
+      package: package(),
       deps: deps()
     ]
   end
@@ -24,6 +27,19 @@ defmodule Pinata.MixProject do
       {:mint, "~> 1.0"},
       {:castore, "~> 0.1"},
       {:jason, "~> 1.2"}
+    ]
+  end
+
+  defp description do
+    "Elixir provider for pinata.cloud IPFS service"
+  end
+
+  defp package do
+    [
+      name: "ex_pinata",
+      files: ~w(lib mix.exs README.md LICENSE),
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/m1ome/ex_pinata"}
     ]
   end
 end
