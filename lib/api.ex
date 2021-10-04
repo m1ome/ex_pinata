@@ -1,15 +1,18 @@
 defmodule Pinata.API do
   use Tesla
 
-  adapter Tesla.Adapter.Mint, timeout: 60_000
-  plug Tesla.Middleware.JSON
-  plug Tesla.Middleware.BaseUrl, "https://api.pinata.cloud/"
-  plug Tesla.Middleware.Headers, auth_headers()
+  adapter(Tesla.Adapter.Mint, timeout: 120_000)
+  plug(Tesla.Middleware.JSON)
+  plug(Tesla.Middleware.BaseUrl, "https://api.pinata.cloud/")
+  plug(Tesla.Middleware.Headers, auth_headers())
 
   defp auth_headers() do
     [
-      {"pinata_api_key", "14a4b61b56a77cba47fe"},
-      {"pinata_secret_api_key", "dbe47c4441fdfedcbdbb20874d8a410a3f0094d6ad2c2dcefb039c45b1c8828a"},
+      {"pinata_api_key", api_key()},
+      {"pinata_secret_api_key", api_token()}
     ]
   end
+
+  defp api_key(), do: Application.get_env(:pinata, :api_key) || ""
+  defp api_token(), do: Application.get_env(:pinata, :api_token) || ""
 end

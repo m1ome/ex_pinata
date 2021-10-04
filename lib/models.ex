@@ -4,11 +4,13 @@ defmodule Pinata.Models.Pin do
   @type t() :: %__MODULE__{}
 
   @spec from_map(map()) :: t()
-  def from_map(%{
-    "IpfsHash" => hash,
-    "PinSize" => size,
-    "Timestamp" => ts
-  } = model) do
+  def from_map(
+        %{
+          "IpfsHash" => hash,
+          "PinSize" => size,
+          "Timestamp" => ts
+        } = model
+      ) do
     %__MODULE__{
       hash: hash,
       size: size,
@@ -18,7 +20,6 @@ defmodule Pinata.Models.Pin do
   end
 end
 
-
 defmodule Pinata.Models.DataUsage do
   defstruct ~w(pin_count pin_size_total pin_size_with_replications_total)a
 
@@ -26,10 +27,10 @@ defmodule Pinata.Models.DataUsage do
 
   @spec from_map(map()) :: t()
   def from_map(%{
-    "pin_count" => pin_count,
-    "pin_size_total" => pin_size_total,
-    "pin_size_with_replications_total" => pin_size_with_replications_total
-  }) do
+        "pin_count" => pin_count,
+        "pin_size_total" => pin_size_total,
+        "pin_size_with_replications_total" => pin_size_with_replications_total
+      }) do
     %__MODULE__{
       pin_count: pin_count,
       pin_size_total: pin_size_total,
@@ -45,11 +46,11 @@ defmodule Pinata.Models.HashPin do
 
   @spec from_map(map()) :: t()
   def from_map(%{
-    "id" => id,
-    "ipfsHash" => hash,
-    "name" => name,
-    "status" => status
-  }) do
+        "id" => id,
+        "ipfsHash" => hash,
+        "name" => name,
+        "status" => status
+      }) do
     %__MODULE__{
       id: id,
       name: name,
@@ -66,15 +67,15 @@ defmodule Pinata.Models.Job do
 
   @spec from_map(map()) :: %__MODULE__{}
   def from_map(%{
-    "id" => id,
-    "ipfs_pin_hash" => ipfs_pin_hash,
-    "date_queued" => date_queued,
-    "status" => status,
-    "name" => name,
-    "keyvalues" => keyvalues,
-    "host_nodes" => host_nodes,
-    "pin_policy" => pin_policy
-  }) do
+        "id" => id,
+        "ipfs_pin_hash" => ipfs_pin_hash,
+        "date_queued" => date_queued,
+        "status" => status,
+        "name" => name,
+        "keyvalues" => keyvalues,
+        "host_nodes" => host_nodes,
+        "pin_policy" => pin_policy
+      }) do
     %__MODULE__{
       id: id,
       hash: ipfs_pin_hash,
@@ -111,10 +112,10 @@ defmodule Pinata.Models.Key do
 
   @spec from_map(map()) :: t()
   def from_map(%{
-    "JWT" => jwt,
-    "pinata_api_key" => api_key,
-    "pinata_api_secret" => api_secret
-  }) do
+        "JWT" => jwt,
+        "pinata_api_key" => api_key,
+        "pinata_api_secret" => api_secret
+      }) do
     %__MODULE__{
       jwt: jwt,
       api_key: api_key,

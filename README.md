@@ -1,21 +1,25 @@
-# Pinata
-
-**TODO: Add description**
+# Pinata 🪅
+Adapter for [pinata.cloud](https://www.pinata.cloud/)
 
 ## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `ex_pinata` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
   [
-    {:ex_pinata, "~> 0.1.0"}
+    {:ex_pinata, "~> 1.0.0"}
   ]
 end
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/ex_pinata](https://hexdocs.pm/ex_pinata).
+To start using adapter you should provide config:
+```elixir
+config :pinata,
+  api_key: "YOUR_PINATA_API_KEY",
+  api_token: "YOUR_PINATA_API_KEY
+```
 
+## Usage 
+```elixir
+content = File.read!("/path/to/some/file")
+{:ok, file} = Pinata.pin_file(content, "my_file")
+```
