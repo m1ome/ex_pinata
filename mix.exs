@@ -27,7 +27,7 @@ defmodule Pinata.MixProject do
       {:mint, "~> 1.0"},
       {:castore, "~> 0.1"},
       {:jason, "~> 1.2"},
-      {:ex_doc, "~> 0.24", only: :dev, runtime: false},
+      {:ex_doc, "~> 0.24", only: :dev, runtime: false}
     ]
   end
 
