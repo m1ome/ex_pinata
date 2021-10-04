@@ -5,7 +5,7 @@ defmodule Pinata.MixProject do
     [
       app: :ex_pinata,
       version: "1.0.0",
-      elixir: "~> 1.10",
+      elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
