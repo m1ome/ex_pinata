@@ -1,0 +1,31 @@
+name: tests
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  tests:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        otp: ['21','23', '24']
+        elixir: ['1.10', '1.11', '1.12']
+        global-mock: [true, false]
+    env:
+      MIX_ENV: test
+      GLOBAL_MOCK: ${{ matrix.global-mock }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: erlef/setup-beam@v1
+        with:
+         otp-version: ${{ matrix.otp }}
+         elixir-version: ${{ matrix.elixir }}
+      - uses: actions/cache@v1
+        with:
+         path: deps
+         key: ${{ runner.os }}-mix-${{ hashFiles(format('{0}{1}', github.workspace, '/mix.lock')) }}
+         restore-keys: |
+           ${{ runner.os }}-mix-
+      - run: mix deps.get
+      - run: mix format --check-formatted
+      - run: mix test --trace
